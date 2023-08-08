@@ -53,13 +53,21 @@ class QuestaoViewController: UIViewController {
             botao.setTitle(tituloBotao, for: .normal)
         }
     }
+
+    @objc func bloquearRespostas() {
+        for botao in botoesResposta {
+            botao.isEnabled = false
+        }
+    }
     
     func configurarLayout() {
         tituloQuestaoLabel.numberOfLines = 0
         tituloQuestaoLabel.textAlignment = .center
         navigationItem.hidesBackButton = true
         for botao in botoesResposta {
+            botao.isEnabled = true
             botao.layer.cornerRadius = 12.0
+            botao.addTarget(self, action: #selector(bloquearRespostas), for: .touchDown)
         }
     }
     
