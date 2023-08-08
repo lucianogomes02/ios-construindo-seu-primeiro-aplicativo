@@ -48,9 +48,17 @@ class QuestaoViewController: UIViewController {
     @objc func configurarQuestao() {
         tituloQuestaoLabel.text = questoes[numeroQuestao].titulo
         for botao in botoesResposta {
+            botao.isEnabled = true
             botao.backgroundColor = UIColor(red: 116/255, green: 58/255, blue: 255/255, alpha: 1.0)
             let tituloBotao = questoes[numeroQuestao].respostas[botao.tag]
             botao.setTitle(tituloBotao, for: .normal)
+            botao.addTarget(self, action: #selector(bloquearRespostas), for: .touchDown)
+        }
+    }
+
+    @objc func bloquearRespostas() {
+        for botao in botoesResposta {
+            botao.isEnabled = false
         }
     }
     
